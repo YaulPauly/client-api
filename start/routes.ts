@@ -18,4 +18,7 @@ router.get('/', async () => {
 const ClientsController = () => import('#controllers/clients_controller')
 
 router.post('clients', [ClientsController, 'store'])
+router.get('clients', [ClientsController, 'index'])
+router.get('clients/:id', [ClientsController, 'show'])
+router.put('clients/:id', [ClientsController, 'update'])
 router.delete('clients/:id', [ClientsController, 'destroy'])
