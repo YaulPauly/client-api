@@ -2,14 +2,15 @@ import vine from '@vinejs/vine'
 
 export const createClientValidator = vine.compile(
   vine.object({
-    name: vine.string().trim().minLength(2),
-    surname: vine.string().trim().minLength(2),
-    mothers_surname: vine.string().trim().optional(),
+    name: vine.string().trim().minLength(2).maxLength(50),
+    surname: vine.string().trim().minLength(2).maxLength(50),
+    mothers_surname: vine.string().trim().maxLength(50).optional(),
     email: vine
       .string()
       .trim()
       .email()
       .minLength(10)
+      .maxLength(100)
       .unique(async (db, value) => {
         const client = await db.from('clients').where('email', value).first()
         return !client
@@ -46,14 +47,15 @@ export const showClientValidator = vine.compile(
 
 export const updateClientValidator = vine.compile(
   vine.object({
-    name: vine.string().trim().minLength(2).optional(),
-    surname: vine.string().trim().minLength(2).optional(),
-    mothers_surname: vine.string().trim().optional(),
+    name: vine.string().trim().minLength(2).maxLength(50).optional(),
+    surname: vine.string().trim().minLength(2).maxLength(50).optional(),
+    mothers_surname: vine.string().trim().maxLength(50).optional(),
     email: vine
       .string()
       .trim()
       .email()
       .minLength(10)
+      .maxLength(100)
       .unique(async (db, value) => {
         const client = await db.from('clients').where('email', value).first()
         return !client

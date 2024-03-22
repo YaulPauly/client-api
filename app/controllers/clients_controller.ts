@@ -34,7 +34,7 @@ export default class ClientsController {
     } catch (error) {
       let errorObject = { error: 'Error:', details: error.message }
       if (error instanceof errors.E_VALIDATION_ERROR) {
-        errorObject = { error: 'Error de validación:', details: error.message }
+        errorObject = { error: 'Error de validación:', details: error.messages }
       }
       return response.status(400).json(errorObject)
     }
@@ -56,7 +56,7 @@ export default class ClientsController {
     } catch (error) {
       let errorObject = { error: 'Error:', details: error.message }
       if (error instanceof errors.E_VALIDATION_ERROR) {
-        errorObject = { error: 'Error de validación:', details: error.message }
+        errorObject = { error: 'Error de validación:', details: error.messages }
       }
       return response.status(400).json(errorObject)
     }
@@ -78,7 +78,7 @@ export default class ClientsController {
     } catch (error) {
       let errorObject = { error: 'Error:', details: error.message }
       if (error instanceof errors.E_VALIDATION_ERROR) {
-        errorObject = { error: 'Error de validación:', details: error.message }
+        errorObject = { error: 'Error de validación:', details: error.messages }
       }
       return response.status(400).json(errorObject)
     }
@@ -111,7 +111,7 @@ export default class ClientsController {
     } catch (error) {
       let errorObject = { error: 'Error:', details: error.message }
       if (error instanceof errors.E_VALIDATION_ERROR) {
-        errorObject = { error: 'Error de validación:', details: error.message }
+        errorObject = { error: 'Error de validación:', details: error.messages }
       }
       return response.status(400).json(errorObject)
     }
