@@ -11,7 +11,7 @@ Este microservicio proporciona una API para la gestión de clientes, permitiendo
 
 ## Tecnologías Utilizadas
 - Node.js
-- Express.js
+- Adonis.js
 - ORM Lucid
 - Swagger (para documentar cada endpoint)
   ![image](https://github.com/YaulPauly/client-api/assets/110009653/fcbed642-b43e-4890-8755-2d78daf26280)
