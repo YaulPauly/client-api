@@ -63,6 +63,8 @@ router.post('clients', [ClientsController, 'store'])
  *         description: Creacion de Cliente con exito
  *       400:
  *         description: Error en la validacion del request
+ *       500:
+ *         description: Error Interno del Servidor
  */
 
 router.get('clients', [ClientsController, 'index'])
@@ -73,11 +75,26 @@ router.get('clients', [ClientsController, 'index'])
  *     summary: Obtener listado Clientes
  *     tags:
  *       - Client
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         required: false
+ *         description: Número de pagina
+ *         schema:
+ *           type: number
+ *       - in: query
+ *         name: per_page
+ *         required: false
+ *         description: Cantidad de clientes por pagina
+ *         schema:
+ *           type: number
  *     responses:
  *       200:
  *         description: Listado de Clientes obtenido con exito
  *       400:
  *         description: Error en la validacion del request
+ *       500:
+ *         description: Error Interno del Servidor
  */
 
 router.get('clients/:id', [ClientsController, 'show'])
@@ -95,11 +112,19 @@ router.get('clients/:id', [ClientsController, 'show'])
  *         description: ID del Cliente que se desea obtener
  *         schema:
  *           type: number
+ *       - in: query
+ *         name: fields
+ *         required: false
+ *         description: Campos a solicitar en una lista separado por comas
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Cliente obtenido con exito
  *       400:
  *         description: Error en la validacion del request
+ *       500:
+ *         description: Error Interno del Servidor
  */
 
 router.put('clients/:id', [ClientsController, 'update'])
@@ -129,6 +154,8 @@ router.put('clients/:id', [ClientsController, 'update'])
  *         description: Actualizacion de Cliente con exito
  *       400:
  *         description: Error en la validacion del request
+ *       500:
+ *         description: Error Interno del Servidor
  */
 
 router.delete('clients/:id', [ClientsController, 'destroy'])
@@ -151,4 +178,6 @@ router.delete('clients/:id', [ClientsController, 'destroy'])
  *         description: Cliente se elimino con exito
  *       400:
  *         description: Error en la validacion del request
+ *       500:
+ *         description: Error Interno del Servidor
  */

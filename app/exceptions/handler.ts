@@ -12,8 +12,8 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * The method is used for handling errors and returning
    * response to the client
    */
-  async handle(error: unknown, ctx: HttpContext) {
-    return super.handle(error, ctx)
+  async handle(_error: unknown, ctx: HttpContext) {
+    return ctx.response.status(500).json({ message: 'Unexpected server error' })
   }
 
   /**

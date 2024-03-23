@@ -28,7 +28,7 @@ export const createClientValidator = vine.compile(
 export const indexClientValidator = vine.compile(
   vine.object({
     page: vine.number().withoutDecimals().positive().min(1),
-    per_page: vine.number().withoutDecimals().positive().range([1, 10]),
+    per_page: vine.number().withoutDecimals().positive().max(1000),
   })
 )
 
@@ -47,8 +47,8 @@ export const showClientValidator = vine.compile(
 
 export const updateClientValidator = vine.compile(
   vine.object({
-    name: vine.string().trim().minLength(2).maxLength(50).optional(),
-    surname: vine.string().trim().minLength(2).maxLength(50).optional(),
+    name: vine.string().trim().minLength(2).maxLength(50),
+    surname: vine.string().trim().minLength(2).maxLength(50),
     mothers_surname: vine.string().trim().maxLength(50).optional(),
     email: vine
       .string()
@@ -58,19 +58,15 @@ export const updateClientValidator = vine.compile(
       .maxLength(100)
       .unique(async (db, value) => {
         const client = await db.from('clients').where('email', value).first()
-        return !client
-      })
-      .optional(),
-    birthdate: vine
-      .date()
-      .beforeOrEqual(() => {
-        const today = new Date()
-        const dateOld = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
-        let datePermited = dateOld.toISOString().split('T')[0]
+        return client
+      }),
+    birthdate: vine.date().beforeOrEqual(() => {
+      const today = new Date()
+      const dateOld = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
+      let datePermited = dateOld.toISOString().split('T')[0]
 
-        return datePermited
-      })
-      .optional(),
+      return datePermited
+    }),
   })
 )
 
