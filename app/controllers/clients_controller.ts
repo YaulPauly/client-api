@@ -93,8 +93,13 @@ export default class ClientsController {
     }
     const payload = await showClientValidator.validate({ id: params.id })
     const dataClient = await Client.findOrFail(payload.id)
-    for (const [key, value] of Object.entries(data)) {
-      dataClient[key] = value
+    dataClient.name = data.name
+    dataClient.surname = data.surname
+    dataClient.email = data.email
+    dataClient.birthdate = data.birthdate
+
+    if (data.mothers_surname) {
+      dataClient.mothersSurname = data.mothers_surname
     }
     const updateClient = await dataClient.save()
     response.status(200).json(updateClient)
