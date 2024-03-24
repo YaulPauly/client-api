@@ -48,9 +48,13 @@ export default class ClientsController {
     }
     const data = await Client.query().paginate(dataPage.page, dataPage.per_page)
     let clientsCount = data.toJSON().meta.total
-    const formattedClients: TFormatClientsPaginate[] = data
-      .toJSON()
-      .data.map((client) => client.serialize())
+    const formattedClients: TFormatClientsPaginate[] = data.toJSON().data.map((client) =>
+      client.serialize({
+        fields: {
+          pick: ['id', 'full_name', 'age', 'birthdate'],
+        },
+      })
+    )
     response.status(200).json({ total: clientsCount, data: formattedClients })
   }
 
