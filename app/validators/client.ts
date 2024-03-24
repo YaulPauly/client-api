@@ -56,9 +56,10 @@ export const updateClientValidator = vine.compile(
       .email()
       .minLength(10)
       .maxLength(100)
-      .unique(async (db, value) => {
-        const client = await db.from('clients').where('email', value).first()
-        return client
+      .unique(async (db, value, helpers) => {
+        const { id } = helpers.data.params
+        const client = await db.from('clients').where('email', value).whereNot('id', id).first()
+        return !client
       }),
     birthdate: vine.date().beforeOrEqual(() => {
       const today = new Date()
