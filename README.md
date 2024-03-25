@@ -21,6 +21,19 @@ Este microservicio proporciona una API para la gestión de clientes, permitiendo
 
 ## Configuración del Entorno Local
 Crea tu base de datos y agrega tus variables de entorno para la conexión.
+    ```bash
+    TZ=UTC
+    PORT=3333
+    HOST=localhost
+    LOG_LEVEL=info
+    APP_KEY=zKXHe-Ahdb7aPK1ylAJlRgTefktEaACi
+    NODE_ENV=development
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_USER=root
+    DB_PASSWORD=
+    DB_DATABASE=
+    ```
 Para ejecutar este proyecto localmente, asegúrate de tener Node.js instalado en tu sistema. Se recomienda utilizar una versión específica de Node (20.11.10), que puede gestionarse utilizando NVM (Node Version Manager).
 
 ## Pasos para Ejecutar el Proyecto Localmente
